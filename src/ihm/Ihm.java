@@ -60,14 +60,11 @@ public class Ihm implements Initializable {
 	private AudioClip acMeasure;
 	@FXML
 	private javafx.scene.control.Button closeButton;
+	@FXML
+	private javafx.scene.control.Button onButton;
+	@FXML
+	private javafx.scene.control.Button offButton;
 
-	public Circle getLedTempo() {
-		return this.ledTempo;
-	}
-
-	public Circle getLedMeasure() {
-		return this.ledMeasure;
-	}
 
 	public Ihm() {
 	}
@@ -82,14 +79,6 @@ public class Ihm implements Initializable {
 
 	public Label getMeasureLabel() {
 		return this.measureSpeed;
-	}
-
-	public AudioClip getAudioClipMesure() {
-		return this.acMeasure;
-	}
-
-	public AudioClip getAudioClipTemps() {
-		return this.acTempo;
 	}
 
 	/* (non-Javadoc)
@@ -129,6 +118,8 @@ public class Ihm implements Initializable {
 	@FXML
 	public void stop() {
 		this.stop.getCommand().execute();
+		this.onButton.setStyle("    -fx-background-color:      linear-gradient(#f0ff35, #a9ff00),        radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);    -fx-background-radius: 6, 5;    -fx-background-insets: 0, 1;    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );    -fx-text-fill: #395306;");
+		this.offButton.setStyle("    -fx-background-color:	        linear-gradient(#ff4723, #ff7256),	        radial-gradient(center 50% -40%, radius 200%, #ff7256 45%, #ff320a 50%);	    -fx-background-radius: 6, 5;	    -fx-background-insets: 0, 1;	    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );	    -fx-text-fill: white;");
 	}
 
 	/**
@@ -137,6 +128,8 @@ public class Ihm implements Initializable {
 	@FXML
 	public void start() {
 		this.start.getCommand().execute();
+		this.onButton.setStyle("    -fx-background-color:      linear-gradient(#f0ff35, #a9ff00),        radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);    -fx-background-radius: 6, 5;    -fx-background-insets: 0, 1;    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );    -fx-text-fill: white;");
+		this.offButton.setStyle("    -fx-background-color:	        linear-gradient(#ff4723, #ff7256),	        radial-gradient(center 50% -40%, radius 200%, #ff7256 45%, #ff320a 50%);	    -fx-background-radius: 6, 5;	    -fx-background-insets: 0, 1;	    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );	    -fx-text-fill: #395306;");
 	}
 
 	/**
@@ -163,32 +156,32 @@ public class Ihm implements Initializable {
 		Stage stage = (Stage) closeButton.getScene().getWindow();
 		stage.close();
 	}
-
+	
 	/**
 	 * light the measure led in the view 
 	 */
 	public void beatMeasure() {
-		this.getLedTempo().setFill(Color.RED);
+		this.ledTempo.setFill(Color.RED);
 		try {
 			sleep(100);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		this.getLedTempo().setFill(Color.GREY);
-		this.getAudioClipMesure().play();
+		this.ledTempo.setFill(Color.GREY);
+		this.acMeasure.play();
 	}
 
 	/**
 	 * light the tempo led in the view
 	 */
 	public void beatTempo() {
-		this.getLedMeasure().setFill(Color.GREEN);
+		this.ledMeasure.setFill(Color.GREEN);
 		try {
 			sleep(100);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		this.getLedMeasure().setFill(Color.GREY);
-		this.getAudioClipTemps().play();
+		this.ledMeasure.setFill(Color.GREY);
+		this.acTempo.play();
 	}
 }
